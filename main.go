@@ -6,6 +6,7 @@ import (
     "fmt"
     "net/http"
     "strconv"
+    "sync"
 )
 
 func main() {
@@ -31,18 +32,25 @@ func main() {
 
     jsonValue, _ := json.Marshal(data)
 
+    var wg sync.WaitGroup
+    wg.Add(count)
+
     for i := 0; i < count; i++ {
-        req, err := http.NewRequest("POST", "https://api.toxinum.xyz/v2/sms", bytes.NewBuffer(jsonValue))
-        req.Header.Set("Content-Type", "application/json")
+        go func(i int) {
+            defer wg.Done()
+            req, err := http.NewRequest("POST", "https://api.toxinum.xyz/v2/sms", bytes.NewBuffer(jsonValue))
+            req.Header.Set("Content-Type", "application/json")
 
-        client := &http.Client{}
-        resp, err := client.Do(req)
-        if err != nil {
-            fmt.Println(err)
-        }
+            client := &http.Client{}
+            resp, err := client.Do(req)
+            if err != nil {
+                fmt.Println(err)
+            }
 
-        defer resp.Body.Close()
-        fmt.Println("")
-        fmt.Println(" \033[37m Sending", strconv.Itoa(i+1), "Sms To", number)
+            defer resp.Body.Close()
+            fmt.Println("")
+            fmt.Println(" \033[37m Sending", strconv.Itoa(i+1), "Sms To", number)
+        }(i)
     }
+    wg.Wait()
 }
