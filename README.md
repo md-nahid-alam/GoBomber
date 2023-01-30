@@ -11,4 +11,4 @@ cd ~/go/bin && ls
 ````
 #### Screenshot
 
-![Demo](https://k.top4top.io/p_2586t2zyt0.png "Demo")
+![Demo](https://g.top4top.io/p_25861ys0e0.jpg "Demo")
