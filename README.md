@@ -1,14 +1,14 @@
-# Go Bomber
-Simple sms bomber using golang!
+# Go-Finder
+Super-Fast golang based subdomain finding tool
 
 #### Install
 
 ````bash
 apt install golang -y
-go install -v github.com/md-nahid-alam/GoBomber@latest
+go install -v github.com/md-nahid-alam/gofinder@latest
 cd ~/go/bin && ls
-./GoBomber
+./gofinder
 ````
 #### Screenshot
 
-![Demo](https://i.top4top.io/p_2577ep4dm1.jpeg "Demo")
+![Demo](https://k.top4top.io/p_2586t2zyt0.png "Demo")
